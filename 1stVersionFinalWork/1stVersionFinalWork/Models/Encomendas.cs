@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace _1stVersionFinalWork.Models
-{
+namespace _1stVersionFinalWork.Models{
     public class Encomendas{
 
+        public Encomendas () {
+            ListaDeProdutos = new HashSet<ItensEncomenda>();
+        }
+
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int EncomendaID { get; set; }
 
         [Required]
@@ -16,8 +21,29 @@ namespace _1stVersionFinalWork.Models
         public string LocalExpedicao { get; set; }
 
         [Required]
-        [StringLength(40)]
         [DataType(DataType.Date)]
-        public string DataExpedicao { get; set; }
+        public DateTime? DataExpedicao { get; set; }
+
+
+        /* colocar atributos como 
+        - morada de entrega
+        - morada de faturação
+        - estado (paga, entregue, anulada, etc......)
+        */
+
+
+        [ForeignKey("Dono")]
+        public int DonoFK { get; set; }
+        public Clientes Dono { get; set; }
+
+        //public int DonoFK { get; set; }
+        //[ForeignKey("DonoFK")]
+        //public Clientes Dono { get; set; }
+        
+        [ForeignKey("Jornada")]
+        public int JornadaFK { get; set; }
+        public Jornadas Jornada { get; set; }
+
+        public virtual ICollection<ItensEncomenda> ListaDeProdutos { get; set; }
     }
 }

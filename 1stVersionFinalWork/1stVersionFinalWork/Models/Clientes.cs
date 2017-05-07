@@ -13,6 +13,7 @@ namespace _1stVersionFinalWork.Models
         {
             // inicialização da lista de Encomendas dum determinado cliente
             ListaDeEncomendas = new HashSet<Encomendas>();
+            ListaDeMensagensEnviadas = new HashSet<Mensagens>();
         }
 
         [Key]
@@ -24,7 +25,7 @@ namespace _1stVersionFinalWork.Models
 
         [Required]
         [StringLength(9)]
-        public int Contato { get; set; }
+        public string Contacto { get; set; }
 
         [Required]
         [StringLength(9)]
@@ -36,10 +37,10 @@ namespace _1stVersionFinalWork.Models
 
 
         // especificar que um CLIENTE tem várias ENCOMENDAS
-        public ICollection<Encomendas> ListaDeEncomendas { get; set; }
+        public virtual ICollection<Encomendas> ListaDeEncomendas { get; set; }
 
         // especificar que um CLIENTE pode submeter várias MENSAGENS
-        public ICollection<Mensagens> ListaDeMensagens { get; set; }
+        public virtual ICollection<Mensagens> ListaDeMensagensEnviadas { get; set; }
 
     }
 }

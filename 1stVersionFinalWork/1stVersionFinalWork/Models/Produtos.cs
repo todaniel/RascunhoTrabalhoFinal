@@ -11,7 +11,7 @@ namespace _1stVersionFinalWork.Models
         public Produtos()
         {
             // inicialização da lista de Encomendas de um Cliente
-            ListaDeEncomendas = new HashSet<Encomendas>();
+            ListaDeEncomendas = new HashSet<ItensEncomenda>();
         }
 
         [Key]
@@ -30,12 +30,14 @@ namespace _1stVersionFinalWork.Models
         public string Descricao { get; set; }
 
         [Required]
-        [StringLength(10)]
         public float Preco { get; set; }
+
+        [Required]
+        public decimal IVA { get; set; }
 
 
         // especificar que "um PRODUTO está" em várias ENCOMENDAS
-        public ICollection<Encomendas> ListaDeEncomendas { get; set; }
+        public ICollection<ItensEncomenda> ListaDeEncomendas { get; set; }
 
     }
 }

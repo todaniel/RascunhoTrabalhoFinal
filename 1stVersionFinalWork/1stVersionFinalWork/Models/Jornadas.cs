@@ -6,9 +6,11 @@ using System.Web;
 
 namespace _1stVersionFinalWork.Models
 {
-    public class Jornadas{
+    public class Jornadas
+    {
 
-        public Jornadas(){
+        public Jornadas()
+        {
             // inicialização da lista de Encomendas de uma Jornada
             ListaDeEncomendas = new HashSet<Encomendas>();
         }
@@ -17,16 +19,14 @@ namespace _1stVersionFinalWork.Models
         public int JornadaID { get; set; }
 
         [Required]
-        [StringLength(40)]
         [DataType(DataType.Date)]
-        public string DataInicio { get; set; }
+        public DataType DataInicio { get; set; }
 
         [Required]
-        [StringLength(40)]
         [DataType(DataType.Date)]
-        public string DataFinal { get; set; }
+        public DataType DataFinal { get; set; }
 
-        [Required]
+       
         [StringLength(80)]
         public string Descricao { get; set; }
 
