@@ -28,7 +28,7 @@ namespace _1stVersionFinalWork.Models
 
 
         //especificar ONDE será criada a Base Dados
-        public OrdersDB() : base("LocalizacaoDaBD") { }
+        public OrdersDB() : base("OrderDataBase") { }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
