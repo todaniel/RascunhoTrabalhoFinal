@@ -17,7 +17,7 @@ namespace _1stVersionFinalWork.Migrations
 
 
             var clientes = new List<Clientes> {
-   
+
         new Clientes  {ClienteID=1, Nome = "Rui Vitória", Contacto ="910000000", Contribuinte= "000000001", Mail= "aluno00001ipt.pt" },
         new Clientes  {ClienteID=2, Nome = "Jorge Derrotado Jesus", Contacto ="910000001", Contribuinte= "000000002", Mail= "aluno00002ipt.pt" },
         new Clientes  {ClienteID=3, Nome = "Nuno Aziado Espirito Santo", Contacto ="910000002", Contribuinte= "000000003", Mail= "aluno00003ipt.pt" },
@@ -31,6 +31,24 @@ namespace _1stVersionFinalWork.Migrations
         };
 
         clientes.ForEach(cc => context.Clientes.AddOrUpdate(c => c.Nome, cc));
+        context.SaveChanges(); // commit
+
+
+            var jornadas = new List<Jornadas> {
+
+        new Jornadas  {JornadaID=1, DataInicio=new DateTime(2017,05,05), DataFinal=new DateTime(2017,05,05), Descricao= "Jornada a começar às 01:15"},
+        new Jornadas  {JornadaID=2, DataInicio=new DateTime(2017,05,06), DataFinal=new DateTime(2017,05,06), Descricao= "Jornada a começar às 00:00 e acabar antes das 06:30"},
+        new Jornadas  {JornadaID=3, DataInicio=new DateTime(2017,05,07), DataFinal=new DateTime(2017,05,07), Descricao= "Jornada a começar às 01:15"},
+        new Jornadas  {JornadaID=4, DataInicio=new DateTime(2017,05,08), DataFinal=new DateTime(2017,05,08), Descricao= "Jornada a começar às 00:30"},
+        new Jornadas  {JornadaID=5, DataInicio=new DateTime(2017,05,09), DataFinal=new DateTime(2017,05,10), Descricao= "Jornada a começar às 23:30"},
+        new Jornadas  {JornadaID=6, DataInicio=new DateTime(2017,05,10), DataFinal=new DateTime(2017,05,10), Descricao= "Jornada a começar às 03:00"},
+        new Jornadas  {JornadaID=7, DataInicio=new DateTime(2017,05,11), DataFinal=new DateTime(2017,05,12), Descricao= "Jornada a começar às 23:00"},
+        new Jornadas  {JornadaID=8, DataInicio=new DateTime(2017,05,12), DataFinal=new DateTime(2017,05,12), Descricao= "Jornada a terminar às 06:45"},
+        new Jornadas  {JornadaID=9, DataInicio=new DateTime(2017,05,13), DataFinal=new DateTime(2017,05,13), Descricao= "Jornada a começar às 01:15 e acabar às 08:30"},
+        new Jornadas  {JornadaID=10, DataInicio=new DateTime(2017,05,14), DataFinal=new DateTime(2017,05,15), Descricao= "Jornada a terminar às 22:00"}
+        };
+
+        jornadas.ForEach(jj => context.Jornadas.AddOrUpdate(j => j.JornadaID, jj));
         context.SaveChanges(); // commit
 
 
@@ -52,61 +70,6 @@ namespace _1stVersionFinalWork.Migrations
         context.SaveChanges(); // commit
 
 
-            var itensEncom = new List<ItensEncomenda> {
-
-        new ItensEncomenda  {ID=1, Quantidade= 3 , Preco=8, IVA=6, ProdutoFK=1, EncomendaFK=1},
-        new ItensEncomenda  {ID=2, Quantidade= 20 , Preco=14, IVA=6, ProdutoFK=2, EncomendaFK=4},
-        new ItensEncomenda  {ID=3, Quantidade= 6 , Preco=9, IVA=6, ProdutoFK=2, EncomendaFK=2},
-        new ItensEncomenda  {ID=4, Quantidade= 8 , Preco=11, IVA=6, ProdutoFK=2, EncomendaFK=2},
-        new ItensEncomenda  {ID=5, Quantidade= 1 , Preco=1, IVA=6, ProdutoFK=5, EncomendaFK=8},
-        new ItensEncomenda  {ID=6, Quantidade= 3 , Preco=2, IVA=6, ProdutoFK=6, EncomendaFK=1},
-        new ItensEncomenda  {ID=7, Quantidade= 1 , Preco=1, IVA=6, ProdutoFK=7, EncomendaFK=7},
-        new ItensEncomenda  {ID=8, Quantidade= 28 , Preco=18, IVA=6, ProdutoFK=9, EncomendaFK=1},
-        new ItensEncomenda  {ID=9, Quantidade= 4 , Preco=16, IVA=6, ProdutoFK=6, EncomendaFK=5},
-        new ItensEncomenda  {ID=10, Quantidade= 9 , Preco=9, IVA=6, ProdutoFK=4, EncomendaFK=3}
-        };
-
-        itensEncom.ForEach(ii => context.ItensEncomenda.AddOrUpdate(i => i.ID, ii));
-        context.SaveChanges(); // commit
-
-
-
-            var jornadas = new List<Jornadas> {
-
-        new Jornadas  {JornadaID=1, DataInicio=new DateTime(2017,05,05), DataFinal=new DateTime(2017,05,05), Descricao= "Jornada a começar às 01:15"},
-        new Jornadas  {JornadaID=2, DataInicio=new DateTime(2017,05,06), DataFinal=new DateTime(2017,05,06), Descricao= "Jornada a começar às 00:00 e acabar antes das 06:30"},
-        new Jornadas  {JornadaID=3, DataInicio=new DateTime(2017,05,07), DataFinal=new DateTime(2017,05,07), Descricao= "Jornada a começar às 01:15"},
-        new Jornadas  {JornadaID=4, DataInicio=new DateTime(2017,05,08), DataFinal=new DateTime(2017,05,08), Descricao= "Jornada a começar às 00:30"},
-        new Jornadas  {JornadaID=5, DataInicio=new DateTime(2017,05,09), DataFinal=new DateTime(2017,05,10), Descricao= "Jornada a começar às 23:30"},
-        new Jornadas  {JornadaID=6, DataInicio=new DateTime(2017,05,10), DataFinal=new DateTime(2017,05,10), Descricao= "Jornada a começar às 03:00"},
-        new Jornadas  {JornadaID=7, DataInicio=new DateTime(2017,05,11), DataFinal=new DateTime(2017,05,12), Descricao= "Jornada a começar às 23:00"},
-        new Jornadas  {JornadaID=8, DataInicio=new DateTime(2017,05,12), DataFinal=new DateTime(2017,05,12), Descricao= "Jornada a terminar às 06:45"},
-        new Jornadas  {JornadaID=9, DataInicio=new DateTime(2017,05,13), DataFinal=new DateTime(2017,05,13), Descricao= "Jornada a começar às 01:15 e acabar às 08:30"},
-        new Jornadas  {JornadaID=10, DataInicio=new DateTime(2017,05,14), DataFinal=new DateTime(2017,05,15), Descricao= "Jornada a terminar às 22:00"}
-        };
-
-        jornadas.ForEach(jj => context.Jornadas.AddOrUpdate(j => j.JornadaID, jj));
-        context.SaveChanges(); // commit
-
-
-            var msg = new List<Mensagens> {
-
-        new Mensagens  {MensagemID=1, Texto= "" , Data=new DateTime(2017,05,14), Respondida=true, DataResposta=new DateTime(2017,05,20), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=1, TipoFK=1},
-        new Mensagens  {MensagemID=2, Texto= "" , Data=new DateTime(2017,05,15), Respondida=true, DataResposta=new DateTime(2017,05,20), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=2, TipoFK=1},
-        new Mensagens  {MensagemID=3, Texto= "" , Data=new DateTime(2017,05,16), Respondida=true, DataResposta=new DateTime(2017,05,20), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=5, TipoFK=1},
-        new Mensagens  {MensagemID=4, Texto= "" , Data=new DateTime(2017,05,17), Respondida=true, DataResposta=new DateTime(2017,05,21), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=9, TipoFK=2},
-        new Mensagens  {MensagemID=5, Texto= "" , Data=new DateTime(2017,05,18), Respondida=true, DataResposta=new DateTime(2017,05,22), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=8, TipoFK=3},
-        new Mensagens  {MensagemID=6, Texto= "" , Data=new DateTime(2017,05,19), Respondida=true, DataResposta=new DateTime(2017,05,23), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=7, TipoFK=2},
-        new Mensagens  {MensagemID=7, Texto= "" , Data=new DateTime(2017,05,20), Respondida=true, DataResposta=new DateTime(2017,05,25), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=7, TipoFK=3},
-        new Mensagens  {MensagemID=8, Texto= "" , Data=new DateTime(2017,05,21), Respondida=true, DataResposta=new DateTime(2017,05,26), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=7, TipoFK=2},
-        new Mensagens  {MensagemID=9, Texto= "" , Data=new DateTime(2017,05,22), Respondida=true, DataResposta=new DateTime(2017,05,26), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=4, TipoFK=1},
-        new Mensagens  {MensagemID=10, Texto= "" , Data=new DateTime(2017,05,25), Respondida=true, DataResposta=new DateTime(2017,05,26), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=6, TipoFK=3}
-        };
-
-        msg.ForEach(mm => context.Mensagens.AddOrUpdate(m => m.MensagemID, mm));
-        context.SaveChanges(); // commit
-
-
             var produtos = new List<Produtos> {
 
         new Produtos  {ProdutoID=1, Nome= "Pão Caseiro" , Tipo= "Pão", Descricao= "Pão de Trigo tipo Caseiro", Preco=2, IVA=6},
@@ -125,22 +88,54 @@ namespace _1stVersionFinalWork.Migrations
         context.SaveChanges(); // commit
 
 
+            var itensEncom = new List<ItensEncomenda> {
+
+        new ItensEncomenda  {ID=1, Quantidade= 3 , Preco=8, IVA=6, ProdutoFK=1, EncomendaFK=1},
+        new ItensEncomenda  {ID=2, Quantidade= 20 , Preco=14, IVA=6, ProdutoFK=2, EncomendaFK=4},
+        new ItensEncomenda  {ID=3, Quantidade= 6 , Preco=9, IVA=6, ProdutoFK=2, EncomendaFK=2},
+        new ItensEncomenda  {ID=4, Quantidade= 8 , Preco=11, IVA=6, ProdutoFK=2, EncomendaFK=2},
+        new ItensEncomenda  {ID=5, Quantidade= 1 , Preco=1, IVA=6, ProdutoFK=5, EncomendaFK=8},
+        new ItensEncomenda  {ID=6, Quantidade= 3 , Preco=2, IVA=6, ProdutoFK=6, EncomendaFK=1},
+        new ItensEncomenda  {ID=7, Quantidade= 1 , Preco=1, IVA=6, ProdutoFK=7, EncomendaFK=7},
+        new ItensEncomenda  {ID=8, Quantidade= 28 , Preco=18, IVA=6, ProdutoFK=9, EncomendaFK=1},
+        new ItensEncomenda  {ID=9, Quantidade= 4 , Preco=16, IVA=6, ProdutoFK=6, EncomendaFK=5},
+        new ItensEncomenda  {ID=10, Quantidade= 9 , Preco=9, IVA=6, ProdutoFK=4, EncomendaFK=3}
+        };
+
+        itensEncom.ForEach(ii => context.ItensEncomenda.AddOrUpdate(i => i.ID, ii));
+        context.SaveChanges(); // commit
+
+
             var tiposMsg = new List<TiposMsg> {
 
         new TiposMsg  {TipoID=1, Descricao= "Sugestão"},
         new TiposMsg  {TipoID=2, Descricao= "Dúvida" },
-        new TiposMsg  {TipoID=3, Descricao= "Reclamação"},
-        new TiposMsg  {TipoID=4, Descricao= "Sugestão"},
-        new TiposMsg  {TipoID=5, Descricao= "Reclamação"},
-        new TiposMsg  {TipoID=6, Descricao= "Dúvida"},
-        new TiposMsg  {TipoID=7, Descricao= "Dúvida"},
-        new TiposMsg  {TipoID=8, Descricao= "Dúvida"},
-        new TiposMsg  {TipoID=9, Descricao= "Sugestão"},
-        new TiposMsg  {TipoID=10, Descricao= "Dúvida"}
+        new TiposMsg  {TipoID=3, Descricao= "Reclamação"}
         };
 
-        tiposMsg.ForEach(tt => context.TiposMsg.AddOrUpdate(t => t.TipoID, tt));
+            tiposMsg.ForEach(tt => context.TiposMsg.AddOrUpdate(t => t.TipoID, tt));
+            context.SaveChanges(); // commit
+
+
+            var msg = new List<Mensagens> {
+
+        new Mensagens  {MensagemID=1, Texto= "Texto só para testar" , Data=new DateTime(2017,05,14), Respondida=true, DataResposta=new DateTime(2017,05,20), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=1, TipoFK=1},
+        new Mensagens  {MensagemID=2, Texto= "Texto só para testar" , Data=new DateTime(2017,05,15), Respondida=true, DataResposta=new DateTime(2017,05,20), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=2, TipoFK=1},
+        new Mensagens  {MensagemID=3, Texto= "Texto só para testar" , Data=new DateTime(2017,05,16), Respondida=true, DataResposta=new DateTime(2017,05,20), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=5, TipoFK=1},
+        new Mensagens  {MensagemID=4, Texto= "Texto só para testar" , Data=new DateTime(2017,05,17), Respondida=true, DataResposta=new DateTime(2017,05,21), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=9, TipoFK=2},
+        new Mensagens  {MensagemID=5, Texto= "Texto só para testar" , Data=new DateTime(2017,05,18), Respondida=true, DataResposta=new DateTime(2017,05,22), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=8, TipoFK=3},
+        new Mensagens  {MensagemID=6, Texto= "Texto só para testar" , Data=new DateTime(2017,05,19), Respondida=true, DataResposta=new DateTime(2017,05,23), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=7, TipoFK=2},
+        new Mensagens  {MensagemID=7, Texto= "Texto só para testar" , Data=new DateTime(2017,05,20), Respondida=true, DataResposta=new DateTime(2017,05,25), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=7, TipoFK=3},
+        new Mensagens  {MensagemID=8, Texto= "Texto só para testar" , Data=new DateTime(2017,05,21), Respondida=true, DataResposta=new DateTime(2017,05,26), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=7, TipoFK=2},
+        new Mensagens  {MensagemID=9, Texto= "Texto só para testar" , Data=new DateTime(2017,05,22), Respondida=true, DataResposta=new DateTime(2017,05,26), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=4, TipoFK=1},
+        new Mensagens  {MensagemID=10, Texto= "Texto só para testar" , Data=new DateTime(2017,05,25), Respondida=true, DataResposta=new DateTime(2017,05,26), TextoResposta="bla bla Benfica rumo ao tetra", DonoDaMensagemFK=6, TipoFK=3}
+        };
+
+        msg.ForEach(mm => context.Mensagens.AddOrUpdate(m => m.MensagemID, mm));
         context.SaveChanges(); // commit
+
+
+        //********************************************************************************************************
 
         }
     }
