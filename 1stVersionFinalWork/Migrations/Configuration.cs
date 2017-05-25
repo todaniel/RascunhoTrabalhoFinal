@@ -72,16 +72,15 @@ namespace _1stVersionFinalWork.Migrations
 
             var produtos = new List<Produtos> {
 
-        new Produtos  {ProdutoID=1, Nome= "Pão Caseiro" , Tipo= "Pão", Descricao= "Pão de Trigo tipo Caseiro", Preco=2, IVA=6},
-        new Produtos  {ProdutoID=2, Nome= "Broa Amarela" , Tipo= "Pão", Descricao= "Pão de Milho amarelo", Preco=2, IVA=6},
-        new Produtos  {ProdutoID=3, Nome= "Paposseco" , Tipo= "Pão", Descricao= "Pequenos Pãezinhos de trigo", Preco=14, IVA=6},
-        new Produtos  {ProdutoID=4, Nome= "Bola Mistura" , Tipo= "Pão", Descricao= "Bolas Pequenas de Trigo e Centeio", Preco=2, IVA=6},
-        new Produtos  {ProdutoID=5, Nome= "Pão Caseiro Mistura" , Tipo= "Pão", Descricao= "Pão de Trigo tipo Caseiro com Centeio", Preco=2, IVA=6},
-        new Produtos  {ProdutoID=6, Nome= "Cacete Mistura" , Tipo= "Pão", Descricao= "Cacete Trigo e Centeio", Preco=2, IVA=6},
-        new Produtos  {ProdutoID=7, Nome= "Broa Branca" , Tipo= "Pão", Descricao= "Pão de Milho Branco", Preco=2, IVA=6},
-        new Produtos  {ProdutoID=8, Nome= "Pão Centeio" , Tipo= "Pão", Descricao= "Pão de Centeio com Trigo", Preco=2, IVA=6},
-        new Produtos  {ProdutoID=9, Nome= "Pão de Leite" , Tipo= "Bolos", Descricao= "Pão de Leite", Preco=2, IVA=6},
-        new Produtos  {ProdutoID=10, Nome= "Bola Berlim" , Tipo= "Bolos", Descricao= "Bola Berlim sem Creme", Preco=3, IVA=6}
+        new Produtos  {ProdutoID=2, Nome= "Broa Amarela" , Tipo= "Pão", Descricao= "Pão de Milho amarelo", Preco=2, IVA=6, Imagem="~Images/1.jpg"},
+        new Produtos  {ProdutoID=3, Nome= "Paposseco" , Tipo= "Pão", Descricao= "Pequenos Pãezinhos de trigo", Preco=14, IVA=6, Imagem="~Images/2.jpg"},
+        new Produtos  {ProdutoID=4, Nome= "Bola Mistura" , Tipo= "Pão", Descricao= "Bolas Pequenas de Trigo e Centeio", Preco=2, IVA=6, Imagem="~Images/3.jpg"},
+        new Produtos  {ProdutoID=5, Nome= "Pão Caseiro Mistura" , Tipo= "Pão", Descricao= "Pão de Trigo tipo Caseiro com Centeio", Preco=2, IVA=6, Imagem="~Images/4.jpg"},
+        new Produtos  {ProdutoID=6, Nome= "Cacete Mistura" , Tipo= "Pão", Descricao= "Cacete Trigo e Centeio", Preco=2, IVA=6, Imagem="~Images/5.jpg"},
+        new Produtos  {ProdutoID=7, Nome= "Broa Branca" , Tipo= "Pão", Descricao= "Pão de Milho Branco", Preco=2, IVA=6, Imagem="~Images/6.jpg"},
+        new Produtos  {ProdutoID=8, Nome= "Pão Centeio" , Tipo= "Pão", Descricao= "Pão de Centeio com Trigo", Preco=2, IVA=6, Imagem="~Images/7.jpg"},
+        new Produtos  {ProdutoID=9, Nome= "Pão de Leite" , Tipo= "Bolos", Descricao= "Pão de Leite", Preco=2, IVA=6, Imagem="~Images/8.jpg"},
+        new Produtos  {ProdutoID=10, Nome= "Bola Berlim" , Tipo= "Bolos", Descricao= "Bola Berlim sem Creme", Preco=3, IVA=6, Imagem="~Images/99.jpg"}
         };
 
         produtos.ForEach(pp => context.Produtos.AddOrUpdate(p => p.ProdutoID, pp));
