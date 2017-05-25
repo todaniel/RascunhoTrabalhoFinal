@@ -35,6 +35,9 @@ namespace _1stVersionFinalWork.Models
         [Required]
         public decimal IVA { get; set; }
 
+        [Required]
+        public string Imagem { get; set; }
+
 
         // especificar que "um PRODUTO está" em várias ENCOMENDAS
         public ICollection<ItensEncomenda> ListaDeEncomendas { get; set; }
