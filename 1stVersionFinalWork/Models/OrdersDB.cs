@@ -25,6 +25,7 @@ namespace _1stVersionFinalWork.Models
         public virtual DbSet<Produtos> Produtos { get; set; }
 
         public virtual DbSet<TiposMsg> TiposMsg { get; set; }
+    
 
 
         //especificar ONDE será criada a Base Dados
