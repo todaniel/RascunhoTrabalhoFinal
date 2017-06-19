@@ -1,10 +1,10 @@
 ﻿@model _1stVersionFinalWork.Models.Clientes
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Criar Novo";
 }
 
-<h2>Create</h2>
+<h2>Criação Novo Cliente</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +12,9 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Clientes</h4>
+        @*<h4>Clientes</h4>*@
+        <br />
+        <br />
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -44,19 +46,24 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Mail, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Mail, "", new { @class = "text-danger" })
+                
+
+
+
+
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Criar" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar à Listagem", "Index")
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>

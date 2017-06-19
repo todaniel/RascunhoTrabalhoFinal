@@ -16,11 +16,11 @@ namespace _1stVersionFinalWork.Models{
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int EncomendaID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "O {0} é de Preenchimento Obrigatório")]
         [StringLength(40)]
         public string LocalExpedicao { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "A {0} é de Preenchimento Obrigatório")]
         [DataType(DataType.Date)]
         public DateTime? DataExpedicao { get; set; }
 
