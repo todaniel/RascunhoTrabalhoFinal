@@ -30,7 +30,7 @@ namespace _1stVersionFinalWork.Models
         public string Descricao { get; set; }
 
         [Required]
-        public float Preco { get; set; }
+        public decimal Preco { get; set; }
 
         [Required]
         public decimal IVA { get; set; }
@@ -40,7 +40,7 @@ namespace _1stVersionFinalWork.Models
 
 
         // especificar que "um PRODUTO está" em várias ENCOMENDAS
-        public ICollection<ItensEncomenda> ListaDeEncomendas { get; set; }
+        public virtual ICollection<ItensEncomenda> ListaDeEncomendas { get; set; }
 
     }
 }

@@ -9,6 +9,14 @@ namespace _1stVersionFinalWork.Models
 {
     public class ItensEncomenda{
 
+        //TESTES$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+        //public ItensEncomenda()
+        //{
+        //   //inicialização da lista de Produtos especificados nos itens de cada encomenda dum Cliente
+        //   ListaDeProdutos = new HashSet<Produtos>();
+        //}
+
         public int ID { get; set; }
 
         [Required]
@@ -30,7 +38,8 @@ namespace _1stVersionFinalWork.Models
         public int EncomendaFK { get; set; }
         public Encomendas Encomenda { get; set; }
 
-
+        //TESTES$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+        //public virtual ICollection<Produtos> ListaDeProdutos { get; set; }
 
 
     }

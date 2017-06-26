@@ -18,7 +18,7 @@ namespace _1stVersionFinalWork.Migrations
 
             var clientes = new List<Clientes> {
 
-        new Clientes  {ClienteID=1, Nome = "Rui Vitória", Contacto ="910000000", Contribuinte= "000000001", Mail= "aluno00001ipt.pt" },
+        new Clientes  {ClienteID=1, Nome = "Rui Vitória", Contacto ="910000000", Contribuinte= "000000001", Mail= "aluno00001@ipt.pt" },
         new Clientes  {ClienteID=2, Nome = "Jorge Derrotado Jesus", Contacto ="910000001", Contribuinte= "000000002", Mail= "aluno00002ipt.pt" },
         new Clientes  {ClienteID=3, Nome = "Nuno Aziado Espirito Santo", Contacto ="910000002", Contribuinte= "000000003", Mail= "aluno00003ipt.pt" },
         new Clientes  {ClienteID=4, Nome = "Pinto da Tosta", Contacto ="910000003", Contribuinte= "000000004", Mail= "aluno00004ipt.pt" },
@@ -73,7 +73,7 @@ namespace _1stVersionFinalWork.Migrations
             var produtos = new List<Produtos> {
 
         new Produtos  {ProdutoID=2, Nome= "Broa Amarela" , Tipo= "Pão", Descricao= "Pão de Milho amarelo", Preco=2, IVA=6, Imagem="~Images/1.jpg"},
-        new Produtos  {ProdutoID=3, Nome= "Paposseco" , Tipo= "Pão", Descricao= "Pequenos Pãezinhos de trigo", Preco=14, IVA=6, Imagem="~Images/2.jpg"},
+        new Produtos  {ProdutoID=3, Nome= "Paposseco" , Tipo= "Pão", Descricao= "Pequenos Pãezinhos de trigo", Preco=1.4m, IVA=6, Imagem="~Images/2.jpg"},
         new Produtos  {ProdutoID=4, Nome= "Bola Mistura" , Tipo= "Pão", Descricao= "Bolas Pequenas de Trigo e Centeio", Preco=2, IVA=6, Imagem="~Images/3.jpg"},
         new Produtos  {ProdutoID=5, Nome= "Pão Caseiro Mistura" , Tipo= "Pão", Descricao= "Pão de Trigo tipo Caseiro com Centeio", Preco=2, IVA=6, Imagem="~Images/4.jpg"},
         new Produtos  {ProdutoID=6, Nome= "Cacete Mistura" , Tipo= "Pão", Descricao= "Cacete Trigo e Centeio", Preco=2, IVA=6, Imagem="~Images/5.jpg"},
@@ -90,14 +90,14 @@ namespace _1stVersionFinalWork.Migrations
             var itensEncom = new List<ItensEncomenda> {
 
         new ItensEncomenda  {ID=1, Quantidade= 3 , Preco=8, IVA=6, ProdutoFK=1, EncomendaFK=1},
-        new ItensEncomenda  {ID=2, Quantidade= 20 , Preco=14, IVA=6, ProdutoFK=2, EncomendaFK=4},
+        new ItensEncomenda  {ID=2, Quantidade= 20 , Preco=1.4m, IVA=6, ProdutoFK=2, EncomendaFK=4},
         new ItensEncomenda  {ID=3, Quantidade= 6 , Preco=9, IVA=6, ProdutoFK=2, EncomendaFK=2},
-        new ItensEncomenda  {ID=4, Quantidade= 8 , Preco=11, IVA=6, ProdutoFK=2, EncomendaFK=2},
+        new ItensEncomenda  {ID=4, Quantidade= 8 , Preco=1.1m, IVA=6, ProdutoFK=2, EncomendaFK=2},
         new ItensEncomenda  {ID=5, Quantidade= 1 , Preco=1, IVA=6, ProdutoFK=5, EncomendaFK=8},
         new ItensEncomenda  {ID=6, Quantidade= 3 , Preco=2, IVA=6, ProdutoFK=6, EncomendaFK=1},
         new ItensEncomenda  {ID=7, Quantidade= 1 , Preco=1, IVA=6, ProdutoFK=7, EncomendaFK=7},
-        new ItensEncomenda  {ID=8, Quantidade= 28 , Preco=18, IVA=6, ProdutoFK=9, EncomendaFK=1},
-        new ItensEncomenda  {ID=9, Quantidade= 4 , Preco=16, IVA=6, ProdutoFK=6, EncomendaFK=5},
+        new ItensEncomenda  {ID=8, Quantidade= 28 , Preco=1.8m, IVA=6, ProdutoFK=9, EncomendaFK=1},
+        new ItensEncomenda  {ID=9, Quantidade= 4 , Preco=1.6m, IVA=6, ProdutoFK=6, EncomendaFK=5},
         new ItensEncomenda  {ID=10, Quantidade= 9 , Preco=9, IVA=6, ProdutoFK=4, EncomendaFK=3}
         };
 

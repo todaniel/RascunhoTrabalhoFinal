@@ -1,7 +1,10 @@
-﻿@model _1stVersionFinalWork.Models.Encomendas
+﻿@*@model _1stVersionFinalWork.Models.Encomendas*@
+@model IEnumerable<_1stVersionFinalWork.Models.ItensEncomenda>
+@* a linha de cima representa a lista de 'itens' de uma determinada encomenda *@
 
 @{
     ViewBag.Title = "Detalhes";
+    var total = 0m; // variável para representa o total da Encomenda
 }
 
 <h2>Detalhes de Encomenda</h2>
@@ -12,48 +15,158 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Dono.Nome)
+            @*@Html.DisplayNameFor(model => model.Dono.Nome)*@
+            @* A linha acima representa o nome do Dono quando acediamos através da encomenda e não itensencomendas *@
+            @Html.DisplayNameFor(model => model.Encomenda.Dono.Nome)
+            @* para se aceder ao nome do DONO é preciso seguir a sequência de encadeamento dos relacionamentos *@
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Dono.Nome)
+            @*@Html.DisplayFor(model => model.Encomenda.Dono.Nome)*@
+            @Html.DisplayFor(model => model.FirstOrDefault().Encomenda.Dono.Nome)
+            @*
+                os dados que chegam à View estão representados numa LISTA. Apesar de ser lista dum só elemento!
+                Para isso temos de aceder a um objeto isolado. Daí o uso do método FirstOrDefault()
+                para extrair o objeto da lista e depois aceder aos seus atributos.
+                Depois, é fazer como na linha de cima (17)
+            *@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ListaDeProdutos)
+            @Html.DisplayNameFor(model => model.Encomenda.Jornada.Descricao)
+            @*  
+                para se aceder à Descrição duma jornada segue-se pela lista itensencomenda, 
+                depois a encomenda associada ao detalhe que se está a consultar, 
+                depois a jornada a que esta se encontra associada 
+                e por fim extrai-se a informação da sua descrição
+            *@
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.ListaDeProdutos)
+            @Html.DisplayFor(model => model.FirstOrDefault().Encomenda.Jornada.Descricao)
+            @* 
+                Mais uma vez o uso do método FirstOrDefault() para extrair o objeto (único) da lista para
+                ficarmos com o objeto e não uma lista
+            *@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Jornada.Descricao)
+            @Html.DisplayNameFor(model => model.Encomenda.LocalExpedicao)
+            @*
+                para se aceder ao Local de Expedição duma encomenda segue-se pela lista itensencomenda,
+                depois a encomenda associada ao detalhe que se está a consultar,
+                e por fim extrai-se a informação do LocalExpedicao da encomenda
+            *@
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Jornada.Descricao)
+            @Html.DisplayFor(model => model.FirstOrDefault().Encomenda.LocalExpedicao)
+            @*
+                Mais uma vez o uso do método FirstOrDefault() para extrair o objeto (único) da lista para
+                ficarmos com o objeto e não uma lista
+            *@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LocalExpedicao)
+            @Html.DisplayNameFor(model => model.Encomenda.DataExpedicao)
+            @*
+                Mais uma vez o uso do método FirstOrDefault() para extrair o objeto (único) da lista para
+                ficarmos com o objeto e não uma lista
+            *@
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.LocalExpedicao)
+            @Html.DisplayFor(model => model.FirstOrDefault().Encomenda.DataExpedicao)
+            @*
+                para se aceder à Data de Expedição duma encomenda segue-se pela lista itensencomenda,
+                depois a encomenda associada ao detalhe que se está a consultar,
+                e por fim extrai-se a informação da DataExpedicao associada à referenciada encomenda
+            *@
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DataExpedicao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DataExpedicao)
-        </dd>
-
     </dl>
+
+    <br />
+    <table class="table">
+        <tr>
+            <th>
+                @* nome do produto *@
+                @*@Html.DisplayNameFor(model => model.ListaDeProdutos.FirstOrDefault().Produto.Nome)*@
+                @* 
+                    A linha acima mostra a primeira versão onde tentou-se extrair sem êxito o nome do produto.
+
+                    Na linha abaixo não se extrai o objeto da lista de produtos pois a nova abordagem do professor
+                    ao situar-mo-nos nos detalhes das encomendas temos acesso ao produto diretamente a partir 
+                    da chave forasteira do relacinamento entre ItensEncomenda e Produtos 
+                *@
+                @Html.DisplayNameFor(model => model.Produto.Nome)
+            </th>
+            <th>
+                @* Quantidade encomendada *@
+                @Html.DisplayNameFor(model => model.Quantidade)
+                @* Neste caso tbm podemos aceder diretamente aos atributos referentes ao detalhe da encomenda *@
+            </th>
+            <th>
+                @* Preço pago *@
+                @Html.DisplayNameFor(model => model.Preco)
+                @* Neste caso tbm podemos aceder diretamente aos atributos referentes ao detalhe da encomenda *@
+            </th>
+            <th>
+                @* IVA da compra *@
+                @Html.DisplayNameFor(model => model.IVA)
+                @* Neste caso tbm podemos aceder diretamente aos atributos referentes ao detalhe da encomenda *@
+            </th>
+            <th>
+                @* sub Total: qt x preço x IVA *@
+                SubTotal
+            </th>
+        </tr>
+        @* dados específicos de cada um dos itens da encomenda *@
+        @* Já não preciso de aceder À lista de podutos "Model.ListaDeProdutos" pois agora já temos uma listagem *@
+        @foreach (var item in Model) 
+        {
+            <tr>
+                <td>
+                    @* nome do produto *@
+                    @Html.DisplayFor(model => item.Produto.Nome)
+                </td>
+                <td>
+                    @* quantidade *@
+                    @Html.DisplayFor(model => item.Quantidade)
+                </td>
+                <td>
+                    @* preço pago *@
+                    @Html.DisplayFor(model => item.Preco) €
+                </td>
+                <td>
+                    @* Iva pago pelo produto *@
+                    @Html.DisplayFor(model => item.IVA) %
+                </td>
+                <td>
+                    @* sub Total: qt x preço x IVA *@
+                    @{var subTotal = (decimal)item.Quantidade * item.Preco * (1 + item.IVA / 100);
+                        total += subTotal; // cálculo do preço total a pagar
+                    }
+
+                    @Math.Round(subTotal, 2) €
+                    @* Arredondar o resultado a duas casas decimais *@
+
+
+                    @*
+                        @{var subTotal = (decimal)item.Quantidade * item.Preco * (1 + item.IVA / 100);}
+                        @subTotal
+                    *@
+                </td>
+            </tr>
+      }
+        <tr>
+            <td colspan="4" style="text-align:right;"><b> Total: </b></td>
+            <td><b> @Math.Round(total, 2) € </b></td>
+        </tr>
+
+    </table>
+
+
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.EncomendaID }) |
+    @Html.ActionLink("Editar", "Edit", new { id = Model.FirstOrDefault().Encomenda.EncomendaID }) |
     @Html.ActionLink("Voltar à Listagem", "Index")
+    @* a forma de aceder ao ID da Encomenda é obtida pelo mesmo método acima descrito.
+        poderia, também, ser obtida através de   Model.FirstOrDefault().EncomendaFK
+    *@
 </p>
