@@ -1,10 +1,10 @@
 ﻿@model _1stVersionFinalWork.Models.Encomendas
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Criação";
 }
 
-<h2>Create</h2>
+<h2>Abertura de Nova Encomenda</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,14 +12,23 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Encomendas</h4>
+        <br />
+        <h4>Dados Gerais</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.EncomendaID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.EncomendaID, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.EncomendaID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DonoFK, "Nome do Cliente", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("DonoFK", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DonoFK, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -40,15 +49,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DonoFK, "DonoFK", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("DonoFK", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.DonoFK, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.JornadaFK, "JornadaFK", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.JornadaFK, "Jornada de Trabalho", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("JornadaFK", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.JornadaFK, "", new { @class = "text-danger" })
@@ -57,14 +58,15 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Continuar" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
+<br /><br />
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar à Listagem", "Index")
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>

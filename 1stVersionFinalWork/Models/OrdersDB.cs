@@ -38,8 +38,8 @@ namespace _1stVersionFinalWork.Models
             // por causa das tabelas do Identity (gestão de utilizadores)
             // modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             //tirar cascade delete em relacionamentos 1=>muitos e muitos=>muitos
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            //modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            //modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
             base.OnModelCreating(modelBuilder);
         }

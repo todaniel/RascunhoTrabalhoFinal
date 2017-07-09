@@ -1,16 +1,20 @@
 ﻿@model IEnumerable<_1stVersionFinalWork.Models.ItensEncomenda>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Itens Encomendas";
 }
 
-<h2>Index</h2>
+<h2>Produtos e Detalhes das Encomendas</h2>
+<br /><br />
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <b>@Html.ActionLink("Novo Registo", "Create")</b>
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Encomenda.EncomendaID)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Encomenda.LocalExpedicao)
         </th>
@@ -29,29 +33,45 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Encomenda.LocalExpedicao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Produto.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantidade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Preco)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IVA)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+
+    @{  var ordenGroup = Model.OrderBy(e => e.EncomendaFK).GroupBy(e => e.EncomendaFK);
+        //var agrupamento = ordenacao.GroupBy(e => e.EncomendaFK);
+        foreach (var amount in ordenGroup)
+        {
+            foreach (var item in amount)
+            {
+                ////index attribute contains total no of repeated fields.
+                //@foreach (var item in Model.Join(e => e.EncomendaFK) {
+                //.OrderBy(e => e.EncomendaFK)
+                    <tr>
+                        <td>
+                             @Html.DisplayFor(modelItem => item.Encomenda.EncomendaID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Encomenda.LocalExpedicao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Produto.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantidade)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Preco)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IVA)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+                            @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
+                        </td>
+                    </tr>
+            }
+        }
+        //}
+    }
+
 
 </table>

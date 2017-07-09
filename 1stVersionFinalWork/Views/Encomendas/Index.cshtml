@@ -10,43 +10,54 @@
 <p>
     @Html.ActionLink("Nova Encomenda", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.EncomendaID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Dono.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LocalExpedicao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataExpedicao)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.EncomendaID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dono.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LocalExpedicao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataExpedicao)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.EncomendaID }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.EncomendaID }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.EncomendaID })
-        </td>
-    </tr>
+@* Verifica se a lista está vazia e se não estiver apresenta listagem de encomendas caso contrário avisa o utilizador *@
+@if (Model.Count() != 0)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EncomendaID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dono.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocalExpedicao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataExpedicao)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EncomendaID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dono.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocalExpedicao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataExpedicao)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.EncomendaID }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.EncomendaID }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.EncomendaID })
+            </td>
+        </tr>
+    }
+
+    </table>
 }
-
-</table>
+else
+{
+    <br />
+    <p colspan="4" style="text-align:left; color:#FF0000;"><b>De momento não existem encomendas para listar!</b></p>
+}

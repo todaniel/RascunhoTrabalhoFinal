@@ -21,8 +21,17 @@ namespace _1stVersionFinalWork.Controllers{
         // GET: ItensEncomendas/Details/5
         public ActionResult Details(int? id){
             if (id == null){
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
+
+            //Averigua se o id introduzido é válido, isto é, se o id é maior que o número de ItensEncomenda existentes
+            if (id > db.ItensEncomenda.Count())
+            {
+                //colocar o utilizador na listagem de encomendas se fornecer id inválido
+                return RedirectToAction("Index");
+            }
+
+
             ItensEncomenda itensEncomenda = db.ItensEncomenda.Find(id);
             if (itensEncomenda == null){
                 return HttpNotFound();

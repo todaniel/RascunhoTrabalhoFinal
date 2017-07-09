@@ -24,7 +24,8 @@ namespace _1stVersionFinalWork.Controllers
         // GET: Encomendas/Details/5
         public ActionResult Details(int? id){
             if (id == null){
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //colocar o utilizador na listagem de encomendas se não fornecer id
+                return RedirectToAction("Index");
             }
 
             // *************************************************************
@@ -57,16 +58,24 @@ namespace _1stVersionFinalWork.Controllers
                                      .Where(ie => ie.EncomendaFK == id);
 
 
-            if (descricaoEncomenda == null)
-            {
-                return HttpNotFound();
+            if (descricaoEncomenda == null){
+                //colocar o utilizador na listagem de encomendas se não existir dados (Encomendas)
+                return RedirectToAction("Index");
             }
+
+            //Averigua se o id introduzido é válido, isto é, se o id é maior que o número de encomendas existentes
+            if (id > db.Encomendas.Count())
+            {
+                //colocar o utilizador na listagem de encomendas se fornecer id inválido
+                return RedirectToAction("Index");
+            }
+
             return View(descricaoEncomenda); // envio da Lista de ItensEncomenda => alteração nos dados da View
         }
 
+
         // GET: Encomendas/Create
-        public ActionResult Create()
-        {
+        public ActionResult Create(){
             ViewBag.DonoFK = new SelectList(db.Clientes, "ClienteID", "Nome");
             ViewBag.JornadaFK = new SelectList(db.Jornadas, "JornadaID", "Descricao");
             return View();
@@ -77,34 +86,72 @@ namespace _1stVersionFinalWork.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EncomendaID,LocalExpedicao,DataExpedicao,DonoFK,JornadaFK")] Encomendas encomendas)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Encomendas.Add(encomendas);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        public ActionResult Create([Bind(Include = "LocalExpedicao,DataExpedicao,DonoFK,JornadaFK")] Encomendas encomendas){
 
-            ViewBag.DonoFK = new SelectList(db.Clientes, "ClienteID", "Nome", encomendas.DonoFK);
-            ViewBag.JornadaFK = new SelectList(db.Jornadas, "JornadaID", "Descricao", encomendas.JornadaFK);
-            return View(encomendas);
+            //determinar que ID atribuir-se-á a uma encomenda nova a ser criada
+            int nextID = 0;
+
+            try{
+                nextID = db.Encomendas.Max(e => e.EncomendaID) + 1;
+            }
+            catch (Exception){
+                //caso ainda não haja encomendas criadas então o nextID é zero por isso o próximo será um
+                nextID = 1;
+            }
+            //associar o nextID à idetificação das Encomendas (EncomendaID)
+            encomendas.EncomendaID = nextID;
+
+            try
+            {
+                if (ModelState.IsValid) //confirma se dados estão conformes
+                {
+                    db.Encomendas.Add(encomendas); //adicionar nova encomenda
+                    db.SaveChanges(); //guardar as alterações efetuadas
+
+                    //return RedirectToAction("Edit");//coloca utilizador no inicio
+                    return RedirectToAction("Edit", new { id = nextID });
+                }
+
+                //ViewBag.DonoFK = new SelectList(db.Clientes, "ClienteID", "Nome", encomendas.DonoFK);
+                //ViewBag.JornadaFK = new SelectList(db.Jornadas, "JornadaID", "Descricao", encomendas.JornadaFK);
+                //return View(encomendas); 
+            }
+            catch (Exception ex){
+                ModelState.AddModelError("", string.Format("Um erro ocorrido impediu a operação!"));
+            }
+            return View(encomendas);//coloca utilizador na View Create, caso haja problemass 
         }
+
+
 
         // GET: Encomendas/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (id == null){
+                //colocar o utilizador na listagem de encomendas se não fornecer id
+                return RedirectToAction("Index");
             }
+
+            if(id > db.Encomendas.Count()){
+                //colocar o utilizador na listagem de encomendas se fornecer id inválido
+                return RedirectToAction("Index");
+            }
+
             Encomendas encomendas = db.Encomendas.Find(id);
             if (encomendas == null)
             {
-                return HttpNotFound();
+                ModelState.AddModelError("", string.Format("Impossível efetuar qualquer edição!! Não existem encomendas registadas."));
             }
-            ViewBag.DonoFK = new SelectList(db.Clientes, "ClienteID", "Nome", encomendas.DonoFK);
-            ViewBag.JornadaFK = new SelectList(db.Jornadas, "JornadaID", "Descricao", encomendas.JornadaFK);
+
+            try{
+                ViewBag.DonoFK = new SelectList(db.Clientes, "ClienteID", "Nome", encomendas.DonoFK);
+                ViewBag.JornadaFK = new SelectList(db.Jornadas, "JornadaID", "Descricao", encomendas.JornadaFK);
+            }
+            catch (Exception){
+                ModelState.AddModelError("", string.Format("Um erro ocorrido impediu a operação!"));
+                //return RedirectToAction("Index");
+            }
+
             return View(encomendas);
         }
 
@@ -115,28 +162,47 @@ namespace _1stVersionFinalWork.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "EncomendaID,LocalExpedicao,DataExpedicao,DonoFK,JornadaFK")] Encomendas encomendas)
         {
+
             if (ModelState.IsValid)
             {
                 db.Entry(encomendas).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DonoFK = new SelectList(db.Clientes, "ClienteID", "Nome", encomendas.DonoFK);
-            ViewBag.JornadaFK = new SelectList(db.Jornadas, "JornadaID", "Descricao", encomendas.JornadaFK);
+
+            try{
+
+                ViewBag.DonoFK = new SelectList(db.Clientes, "ClienteID", "Nome", encomendas.DonoFK);
+                ViewBag.JornadaFK = new SelectList(db.Jornadas, "JornadaID", "Descricao", encomendas.JornadaFK);
+            }
+            catch (Exception){
+                ModelState.AddModelError("", string.Format("Don't be stupid!!! Do the right things asshole :("));
+            }
+            
             return View(encomendas);
         }
 
         // GET: Encomendas/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        public ActionResult Delete(int? id){
+            if (id == null){
+                //colocar o utilizador na listagem de encomendas se não fornecer id
+                return RedirectToAction("Index");
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            // *************************************************************
+            // código inicial
+            // *************************************************************
+            Encomendas encomenda = db.Encomendas
+                                      .Include(e => e.Dono)
+                                      .Include(e => e.Jornada)
+                                      .Where(e => e.EncomendaID == id)
+                                      .FirstOrDefault();
+            // *************************************************************
+
             Encomendas encomendas = db.Encomendas.Find(id);
-            if (encomendas == null)
-            {
-                return HttpNotFound();
+            if (encomendas == null){
+                return RedirectToAction("Index");
             }
             return View(encomendas);
         }
@@ -147,10 +213,25 @@ namespace _1stVersionFinalWork.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Encomendas encomendas = db.Encomendas.Find(id);
-            db.Encomendas.Remove(encomendas);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+
+            try
+            {
+                //especificar (argumento do remove) que encomenda será eliminada
+                db.Encomendas.Remove(encomendas);
+                //efetivar a eliminação
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", string.Format("Um erro ocorrido impediu a eliminação da Encomenda!"));
+                //retorna a view com os dados da encomenda
+                return View(encomendas);
+            }
+
         }
+
 
         protected override void Dispose(bool disposing)
         {

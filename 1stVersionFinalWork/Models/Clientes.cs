@@ -19,7 +19,7 @@ namespace _1stVersionFinalWork.Models{
 
         [Required(ErrorMessage = "O {0} é de Preenchimento Obrigatório")]
         [Display(Name = "Nome do Cliente")]
-        [RegularExpression("[A-ZÍÂÓ][a-záéíóúàèìòùâêîôûãõäëïöüç']+((-| )((de|da|do|dos) )?[A-ZÍÂÓ][a-záéíóúàèìòùâêîôûãõäëïöüç']+)*",
+        [RegularExpression("[A-ZÍÂÓÁ][a-záéíóúàèìòùâêîôûãõäëïöüç']+((-| )((a|de|da|do|dos) )?[A-ZÍÂÓÁÉÀ][a-záéíóúàèìòùâêîôûãõäëïöüç']+)*",
             ErrorMessage = "No {0} só se permitem letras. Cada nome deverá começar com letra maiúscula!")]
         public string Nome { get; set; }
 

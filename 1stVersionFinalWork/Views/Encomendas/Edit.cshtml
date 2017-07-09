@@ -1,10 +1,11 @@
 ﻿@model _1stVersionFinalWork.Models.Encomendas
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edição";
 }
 
-<h2>Edit</h2>
+<h2>Editar Dados da Encomenda</h2>
+<br />
 
 
 @using (Html.BeginForm())
@@ -48,17 +49,25 @@
                 @Html.ValidationMessageFor(model => model.JornadaFK, "", new { @class = "text-danger" })
             </div>
         </div>
+        
+        <p style="margin-left:190px;">
+            @* Primeiro caso retorna um id à view pretendida, neste caso não é necessário!!! *@
+            @*[ @Html.ActionLink("Adicionar/Alterar Produtos à Encomenda", "Create", "ItensEncomendas", new { id = Model.EncomendaID }, null) ]*@
+            <b>[ @Html.ActionLink("Adicionar/Alterar Produtos à Encomenda", "Create", "ItensEncomendas") ]</b>
+        </p>
+        <br /><br />
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Guardar Alterações" class="btn btn-default btn-success btn-lg" />
+                <br /><br />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar à Listagem", "Index")
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>

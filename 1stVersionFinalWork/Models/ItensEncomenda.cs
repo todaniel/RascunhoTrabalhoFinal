@@ -9,23 +9,22 @@ namespace _1stVersionFinalWork.Models
 {
     public class ItensEncomenda{
 
-        //TESTES$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)] //A PK não será AutoNumber
+        //[Display(Name = "Nº de Encomenda")]
+        //public int EncomendaID { get; set; }
 
-        //public ItensEncomenda()
-        //{
-        //   //inicialização da lista de Produtos especificados nos itens de cada encomenda dum Cliente
-        //   ListaDeProdutos = new HashSet<Produtos>();
-        //}
-
+        [Key]
+        [Display(Name = "Item Nº")]
         public int ID { get; set; }
 
         [Required]
         public float Quantidade { get; set; }
 
-        [Required]
+        [Display(Name = "Preço")]
         public decimal Preco { get; set; }
 
-        [Required]
+        [Display(Name = "Taxa de Iva")]
         public decimal IVA { get; set; }
 
 
@@ -37,9 +36,6 @@ namespace _1stVersionFinalWork.Models
         [ForeignKey("Encomenda")]
         public int EncomendaFK { get; set; }
         public Encomendas Encomenda { get; set; }
-
-        //TESTES$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-        //public virtual ICollection<Produtos> ListaDeProdutos { get; set; }
 
 
     }

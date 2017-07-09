@@ -39,14 +39,24 @@ namespace _1stVersionFinalWork.Controllers{
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProdutoID,Nome,Tipo,Descricao,Preco,IVA")] Produtos produtos){
-            if (ModelState.IsValid){
+        public ActionResult Create([Bind(Include = "ProdutoID,Nome,Tipo,Descricao,Preco,IVA")] Produtos produtos)
+        {
+            if (ModelState.IsValid)
+            {
                 db.Produtos.Add(produtos);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            else
+            {
+                if (ModelState["Preco"].Errors.Count == 1 && ModelState["Preco"].Errors[0].ErrorMessage.Contains("is not valid for"))
+                {
+                    ModelState["Preco"].Errors.Clear();
+                    ModelState["Preco"].Errors.Add("Introduza um valor decimal com vírgula.");
+                }
 
-            return View(produtos);
+                return View(produtos);
+            }
         }
 
         // GET: Produtos/Edit/5
