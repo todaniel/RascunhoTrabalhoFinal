@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace _1stVersionFinalWork.Models{
+namespace FinalWork.Models{
     public class Clientes{
 
         public Clientes(){

@@ -1,6 +1,6 @@
-namespace _1stVersionFinalWork.Migrations
+namespace FinalWork.Migrations
 {
-    using _1stVersionFinalWork.Models;
+    using FinalWork.Models;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -9,9 +9,10 @@ namespace _1stVersionFinalWork.Migrations
     using System.Linq;
     using System.Text;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<_1stVersionFinalWork.Models.OrdersDB>
+    internal sealed class Configuration : DbMigrationsConfiguration<FinalWork.Models.OrdersDB>
     {
-        public Configuration(){
+        public Configuration()
+        {
             AutomaticMigrationsEnabled = true;
         }
 
@@ -19,11 +20,14 @@ namespace _1stVersionFinalWork.Migrations
         /// Wrapper for SaveChanges adding the Validation Messages to the generated exception
         /// </summary>
         /// <param name="context">The context.</param>
-        private void SaveChanges(DbContext context){
-            try{
+        private void SaveChanges(DbContext context)
+        {
+            try
+            {
                 context.SaveChanges();
             }
-            catch (DbEntityValidationException ex){
+            catch (DbEntityValidationException ex)
+            {
                 StringBuilder sb = new StringBuilder();
 
                 foreach (var failure in ex.EntityValidationErrors)
@@ -41,7 +45,8 @@ namespace _1stVersionFinalWork.Migrations
         }
 
 
-        protected override void Seed(_1stVersionFinalWork.Models.OrdersDB context){
+        protected override void Seed(FinalWork.Models.OrdersDB context)
+        {
 
 
             var clientes = new List<Clientes> {
@@ -77,9 +82,9 @@ namespace _1stVersionFinalWork.Migrations
         new Jornadas  {JornadaID=10, DataInicio=new DateTime(2017,05,14), DataFinal=new DateTime(2017,05,15), Descricao= "Jrd_20170515 - Inicio às 01:15h"}
         };
 
-        jornadas.ForEach(jj => context.Jornadas.AddOrUpdate(j => j.JornadaID, jj));
-        //context.SaveChanges(); // commit
-        SaveChanges(context);
+            jornadas.ForEach(jj => context.Jornadas.AddOrUpdate(j => j.JornadaID, jj));
+            //context.SaveChanges(); // commit
+            SaveChanges(context);
 
 
             var encomendas = new List<Encomendas> {
@@ -96,9 +101,9 @@ namespace _1stVersionFinalWork.Migrations
         new Encomendas  {EncomendaID=10, LocalExpedicao = "Torres Novas", DataExpedicao=new DateTime(2017,05,10), DonoFK=6, JornadaFK=6}
         };
 
-        encomendas.ForEach(ee => context.Encomendas.AddOrUpdate(e => e.EncomendaID, ee));
-        //context.SaveChanges(); // commit
-        SaveChanges(context);
+            encomendas.ForEach(ee => context.Encomendas.AddOrUpdate(e => e.EncomendaID, ee));
+            //context.SaveChanges(); // commit
+            SaveChanges(context);
 
 
             var produtos = new List<Produtos> {
@@ -114,9 +119,9 @@ namespace _1stVersionFinalWork.Migrations
         new Produtos  {ProdutoID=10, Nome= "Bola Berlim" , Tipo= "Bolos", Descricao= "Bola Berlim sem Creme", Preco=0.75m, IVA=6, Imagem="~Images/99.jpg"}
         };
 
-        produtos.ForEach(pp => context.Produtos.AddOrUpdate(p => p.ProdutoID, pp));
-        //context.SaveChanges(); // commit
-        SaveChanges(context);
+            produtos.ForEach(pp => context.Produtos.AddOrUpdate(p => p.ProdutoID, pp));
+            //context.SaveChanges(); // commit
+            SaveChanges(context);
 
 
             var itensEncom = new List<ItensEncomenda> {
@@ -139,9 +144,9 @@ namespace _1stVersionFinalWork.Migrations
         new ItensEncomenda  {ID=16, Quantidade= 9 , IVA=6, ProdutoFK=4, EncomendaFK=3}
         };
 
-        itensEncom.ForEach(ii => context.ItensEncomenda.AddOrUpdate(i => i.ID, ii));
-        //context.SaveChanges(); // commit
-        SaveChanges(context);
+            itensEncom.ForEach(ii => context.ItensEncomenda.AddOrUpdate(i => i.ID, ii));
+            //context.SaveChanges(); // commit
+            SaveChanges(context);
 
 
             var tiposMsg = new List<TiposMsg> {
@@ -170,13 +175,16 @@ namespace _1stVersionFinalWork.Migrations
         new Mensagens  {MensagemID=10, Texto= "Texto só para testar" , Data=new DateTime(2017,05,25), Respondida=true, DataResposta=new DateTime(2017,05,26), TextoResposta="bla bla Benfica rumo ao penta", DonoDaMensagemFK=6, TipoFK=3}
         };
 
-        msg.ForEach(mm => context.Mensagens.AddOrUpdate(m => m.MensagemID, mm));
-        //context.SaveChanges(); // commit
-        SaveChanges(context);
+            msg.ForEach(mm => context.Mensagens.AddOrUpdate(m => m.MensagemID, mm));
+            //context.SaveChanges(); // commit
+            SaveChanges(context);
 
 
             //********************************************************************************************************
 
         }
     }
+
+
+
 }

@@ -119,9 +119,9 @@ C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1s
 C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\bin\roslyn\vbc.exe
 C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\bin\roslyn\VBCSCompiler.exe
 C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\bin\1stVersionFinalWork.dll.config
-C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\bin\1stVersionFinalWork.dll
-C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\bin\1stVersionFinalWork.pdb
+C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\bin\FinalWork.dll.config
+C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\bin\FinalWork.dll
+C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\bin\FinalWork.pdb
 C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\bin\Antlr3.Runtime.dll
 C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\bin\EntityFramework.dll
 C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\bin\EntityFramework.SqlServer.dll
@@ -173,5 +173,5 @@ C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1s
 C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\bin\System.Web.Webpages.Razor.xml
 C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\bin\System.Web.Helpers.xml
 C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\bin\System.Web.Mvc.xml
-C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\obj\Debug\1stVersionFinalWork.dll
-C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\obj\Debug\1stVersionFinalWork.pdb
+C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\obj\Debug\FinalWork.dll
+C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\obj\Debug\FinalWork.pdb

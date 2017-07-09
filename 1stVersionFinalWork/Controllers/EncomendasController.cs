@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using _1stVersionFinalWork.Models;
+using FinalWork.Models;
 
-namespace _1stVersionFinalWork.Controllers
+namespace FinalWork.Controllers
 {
     public class EncomendasController : Controller
     {

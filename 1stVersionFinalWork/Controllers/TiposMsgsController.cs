@@ -6,9 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using _1stVersionFinalWork.Models;
+using FinalWork.Models;
 
-namespace _1stVersionFinalWork.Controllers{
+namespace FinalWork.Controllers{
     public class TiposMsgsController : Controller{
         private OrdersDB db = new OrdersDB();
 
