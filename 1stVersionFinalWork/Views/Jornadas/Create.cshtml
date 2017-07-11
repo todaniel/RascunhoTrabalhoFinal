@@ -1,10 +1,12 @@
 ﻿@model FinalWork.Models.Jornadas
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Criação";
 }
 
-<h2>Create</h2>
+<br />
+<h2>Criação de Jornadas de Trabalho</h2>
+<br />
 
 
 @using (Html.BeginForm()) 
@@ -18,7 +20,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DataInicio, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.DataInicio, htmlAttributes: new { @class = "form-control" })
+                @*@Html.EnumDropDownListFor(model => model.DataInicio, htmlAttributes: new { @class = "form-control" })*@
+                @Html.EditorFor(model => model.DataInicio, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DataInicio, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -26,7 +29,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DataFinal, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.DataFinal, htmlAttributes: new { @class = "form-control" })
+                @*@Html.EnumDropDownListFor(model => model.DataFinal, htmlAttributes: new { @class = "form-control" })*@
+                @Html.EditorFor(model => model.DataFinal, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DataFinal, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -41,14 +45,15 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Concluir" class="btn btn-default btn-success btn-lg" /> 
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <br />
+    @Html.ActionLink("Voltar à Listagem", "Index")
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>

@@ -1,10 +1,12 @@
 ﻿@model FinalWork.Models.Mensagens
 
+<br />
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Mensagem";
 }
 
-<h2>Create</h2>
+<h2>Escrever Mensagem</h2>
+<br />
 
 
 @using (Html.BeginForm()) 
@@ -15,74 +17,45 @@
         <h4>Mensagens</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        @* Autor da Mensagem *@
         <div class="form-group">
-            @Html.LabelFor(model => model.Texto, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Data, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Respondida, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Respondida)
-                    @Html.ValidationMessageFor(model => model.Respondida, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DataResposta, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DataResposta, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DataResposta, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TextoResposta, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TextoResposta, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TextoResposta, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DonoDaMensagemFK, "DonoDaMensagemFK", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DonoDaMensagemFK, "Autor", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("DonoDaMensagemFK", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DonoDaMensagemFK, "", new { @class = "text-danger" })
             </div>
         </div>
 
+        @* Escolha do tipo de Mensagem que o utilizador enviará *@
         <div class="form-group">
-            @Html.LabelFor(model => model.TipoFK, "TipoFK", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TipoFK, "Tipo de Mensagem", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("TipoFK", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TipoFK, "", new { @class = "text-danger" })
             </div>
         </div>
+        
+        @* Zona onde se escreverá o texto da Mensagem que o utilizador enviará *@        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Texto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control", placeholder = "Escreva aqui a sua mensagem" } })
+                @*@Html.TextArea(name: "Message", new { rows = 10, columns = 40 }*@
+                @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "text-danger" })
+            </div>
+        </div>        
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Enviar Mensagem" class="btn btn-default btn-success btn-lg" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar à Listagem", "Index")
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>

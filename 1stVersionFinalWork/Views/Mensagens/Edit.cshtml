@@ -1,10 +1,12 @@
 ﻿@model FinalWork.Models.Mensagens
 
+<br />
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edição";
 }
 
-<h2>Edit</h2>
+<h2>Edição da Mensagem</h2>
+<br />
 
 
 @using (Html.BeginForm())
@@ -18,10 +20,18 @@
         @Html.HiddenFor(model => model.MensagemID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Texto, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DonoDaMensagemFK, "Autor", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "text-danger" })
+                @Html.DropDownList("DonoDaMensagemFK", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DonoDaMensagemFK, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipoFK, "Tipo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("TipoFK", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TipoFK, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -33,58 +43,26 @@
             </div>
         </div>
 
+        <br />
         <div class="form-group">
-            @Html.LabelFor(model => model.Respondida, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Texto, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Respondida)
-                    @Html.ValidationMessageFor(model => model.Respondida, "", new { @class = "text-danger" })
-                </div>
+                @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DataResposta, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DataResposta, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DataResposta, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TextoResposta, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TextoResposta, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TextoResposta, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DonoDaMensagemFK, "DonoDaMensagemFK", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("DonoDaMensagemFK", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.DonoDaMensagemFK, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TipoFK, "TipoFK", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("TipoFK", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.TipoFK, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        </div> 
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Guardar" class="btn btn-default btn-success btn-lg" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <br />
+    @Html.ActionLink("Voltar à Listagem", "Index")
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>

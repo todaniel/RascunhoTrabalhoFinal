@@ -1,13 +1,15 @@
 ﻿@model IEnumerable<FinalWork.Models.Mensagens>
 
+<br />
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Mensagens";
 }
 
-<h2>Index</h2>
+<h2>Listagem de Mensagens</h2>
+<br />
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <b>@Html.ActionLink("Nova Mensagem", "Create")</b>
 </p>
 <table class="table">
     <tr>
@@ -15,7 +17,7 @@
             @Html.DisplayNameFor(model => model.DonoDaMensagem.Nome)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tipo.Descricao)
+            @Html.DisplayNameFor(model => model.Tipo)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Texto)
@@ -26,12 +28,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Respondida)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataResposta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TextoResposta)
-        </th>
+
         <th></th>
     </tr>
 
@@ -53,15 +50,9 @@
             @Html.DisplayFor(modelItem => item.Respondida)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DataResposta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TextoResposta)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MensagemID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MensagemID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MensagemID })
+            @Html.ActionLink("Editar", "Edit", new { id=item.MensagemID }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.MensagemID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.MensagemID })
         </td>
     </tr>
 }

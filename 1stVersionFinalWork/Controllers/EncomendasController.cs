@@ -135,8 +135,7 @@ namespace FinalWork.Controllers
             }
 
             Encomendas encomendas = db.Encomendas.Find(id);
-            if (encomendas == null)
-            {
+            if (encomendas == null){
                 ModelState.AddModelError("", string.Format("Impossível efetuar qualquer edição!! Não existem encomendas registadas."));
             }
 
@@ -173,7 +172,7 @@ namespace FinalWork.Controllers
                 ViewBag.JornadaFK = new SelectList(db.Jornadas, "JornadaID", "Descricao", encomendas.JornadaFK);
             }
             catch (Exception){
-                ModelState.AddModelError("", string.Format("Don't be stupid!!! Do the right things asshole :("));
+                ModelState.AddModelError("", string.Format("Um erro ocorrido impediu a operação!"));
             }
             
             return View(encomendas);
@@ -184,11 +183,11 @@ namespace FinalWork.Controllers
             if (id == null){
                 //colocar o utilizador na listagem de encomendas se não fornecer id
                 return RedirectToAction("Index");
-                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
+
             // *************************************************************
-            // código inicial
+            // código inicial #*#
             // *************************************************************
             Encomendas encomenda = db.Encomendas
                                       .Include(e => e.Dono)

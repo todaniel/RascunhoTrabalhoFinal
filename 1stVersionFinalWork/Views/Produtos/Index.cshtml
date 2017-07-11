@@ -1,13 +1,15 @@
 ﻿@model IEnumerable<FinalWork.Models.Produtos>
 
+<br />
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Listagem";
 }
 
-<h2>Index</h2>
+<h2>Lista de Produtos</h2>
+<br />
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Novo Produto", "Create")
 </p>
 <table class="table">
     <tr>
@@ -47,9 +49,9 @@
             @Html.DisplayFor(modelItem => item.IVA)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProdutoID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProdutoID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProdutoID })
+            @Html.ActionLink("Editar", "Edit", new { id=item.ProdutoID }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.ProdutoID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ProdutoID })
         </td>
     </tr>
 }

@@ -1,12 +1,16 @@
 ﻿@model FinalWork.Models.Mensagens
 
+<br />
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Eliminação";
 }
 
-<h2>Delete</h2>
+<h2>Eliminação de Mensagem</h2>
+<br />
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Tem a certeza que deseja eliminar a mensagem?</h3>
+<br />
+
 <div>
     <h4>Mensagens</h4>
     <hr />
@@ -73,8 +77,9 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <br />
+            <input type="submit" value="Eliminar" class="btn btn-default btn-danger" /> |
+            @Html.ActionLink("Voltar à Listagem", "Index")
         </div>
     }
 </div>

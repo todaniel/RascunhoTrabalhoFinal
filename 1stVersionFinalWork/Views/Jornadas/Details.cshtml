@@ -1,10 +1,12 @@
 ﻿@model FinalWork.Models.Jornadas
 
+<br />
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
 }
 
-<h2>Details</h2>
+<h2>Detalhes da Jornada</h2>
+<br />
 
 <div>
     <h4>Jornadas</h4>
@@ -37,6 +39,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.JornadaID }) |
-    @Html.ActionLink("Back to List", "Index")
+    <br />
+    @Html.ActionLink("Editar", "Edit", new { id = Model.JornadaID }) |
+    @Html.ActionLink("Voltar à Listagem", "Index")
 </p>

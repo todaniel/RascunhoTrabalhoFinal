@@ -11,30 +11,37 @@ namespace FinalWork.Models
     {
 
         [Key]
+        [Display(Name = "Mensagem Nº")]
         public int MensagemID { get; set; }
 
         [Required]
+        [Display(Name = "Texto da Mensagem")]
         [StringLength(255)]
+        [DataType(DataType.MultilineText)]
         public string Texto { get; set; }
 
-        [Required]
+        [Display(Name = "Data de Envio")]
         [DataType(DataType.Date)]
-        public DateTime Data { get; set; }
+        public DateTime? Data { get; set; }
 
-
+        //[Display(Name = "Estado")]
         public Boolean Respondida { get; set; }
 
+        [Display(Name = "Data de Resposta")]
+        [DataType(DataType.Date)]
         public DateTime? DataResposta { get; set; }
 
+        [Display(Name = "Resposta")]
         public string TextoResposta { get; set; }
 
+        [Display(Name = "Autor")]
         [ForeignKey("DonoDaMensagem")]
         public int DonoDaMensagemFK { get; set; }
-        public Clientes DonoDaMensagem { get; set; }
+        public virtual Clientes DonoDaMensagem { get; set; }
 
-
+        [Display(Name = "Tipo de Mensagem")]
         [ForeignKey("Tipo")]
         public int TipoFK { get; set; }
-        public TiposMsg Tipo { get; set; }
+        public virtual TiposMsg Tipo { get; set; }
     }
 }

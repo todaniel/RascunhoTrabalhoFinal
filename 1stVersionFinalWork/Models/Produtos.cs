@@ -23,22 +23,23 @@ namespace FinalWork.Models
             ErrorMessage = "No {0} só se permitem letras. Cada nome deverá começar com letra maiúscula!")]
         public string Nome { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "O {0} é de Preenchimento Obrigatório")]
         [Display(Name = "Tipo de Produto")]
         [StringLength(15)]
         public string Tipo { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "O {0} é de Preenchimento Obrigatório")]
         [Display(Name = "Descrição do Produto")]
         public string Descricao { get; set; }
 
   
         [Required(ErrorMessage = "O {0} é de Preenchimento Obrigatório")]
+        [Display(Name = "Preço")]
         [RegularExpression("[0-9]+(,[0-9]{1,2})?",
             ErrorMessage = "Introduza um valor inteiro ou decimal com vírgula!")]
         public decimal Preco { get; set; }
 
-        //VERSÃO DO PEDRO NUNES
+        //VERSÃO DE COLEGA "SUPOSTAMENTE A FUNCIONAR"
         //[Required(ErrorMessage = "A introdução do Preço é obrigatório")]
         //[Display(Name = "Preço: ")]
         //public double Preco { get; set; }

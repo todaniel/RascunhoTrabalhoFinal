@@ -1,4 +1,4 @@
-﻿@model.FinalWork.Models.Encomendas
+﻿@model FinalWork.Models.Encomendas
 
 @{
     ViewBag.Title = "Criação";
@@ -35,7 +35,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.LocalExpedicao, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.LocalExpedicao, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.LocalExpedicao, new { htmlAttributes = new { @class = "form-control", placeholder = "Local" } })
                 @Html.ValidationMessageFor(model => model.LocalExpedicao, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -43,7 +43,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DataExpedicao, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DataExpedicao, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.DataExpedicao, new { htmlAttributes = new { @class = "form-control", placeholder = "ano/mes/dia" } })
+                @*@Html.TextBoxFor(model => model.DataExpedicao, new { @class = "datepicker" })*@
                 @Html.ValidationMessageFor(model => model.DataExpedicao, "", new { @class = "text-danger" })
             </div>
         </div>

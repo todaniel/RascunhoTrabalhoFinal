@@ -175,4 +175,3 @@ C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1s
 C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\bin\System.Web.Mvc.xml
 C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\obj\Debug\FinalWork.dll
 C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\obj\Debug\FinalWork.pdb
-C:\Users\Antonio\Desktop\TI2\Casimiro\Repositório GIT\1stVersionTrabFinal_BD\1stVersionFinalWork\obj\Debug\1stVersionFinalWork.csprojResolveAssemblyReference.cache

@@ -21,6 +21,7 @@ namespace FinalWork.Controllers{
         // GET: ItensEncomendas/Details/5
         public ActionResult Details(int? id){
             if (id == null){
+                //direciona o utilizador para a listagem se não for fornecido o id do detalhe da encomenda
                 return RedirectToAction("Index");
             }
 
@@ -34,7 +35,7 @@ namespace FinalWork.Controllers{
 
             ItensEncomenda itensEncomenda = db.ItensEncomenda.Find(id);
             if (itensEncomenda == null){
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
             return View(itensEncomenda);
         }
@@ -52,28 +53,49 @@ namespace FinalWork.Controllers{
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Quantidade,Preco,IVA,ProdutoFK,EncomendaFK")] ItensEncomenda itensEncomenda){
-            if (ModelState.IsValid){
-                db.ItensEncomenda.Add(itensEncomenda);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+            try{
+                if (ModelState.IsValid)
+                {
+                    db.ItensEncomenda.Add(itensEncomenda); //adicionar novo detalhe à encomenda
+                    db.SaveChanges(); //guardar as alterações efetuadas
+                    return RedirectToAction("Index"); //coloca utilizador no inicio
+                }
             }
+            catch (Exception ex){
+                ModelState.AddModelError("", string.Format("Um erro ocorrido impediu a operação!"));
+            }
+            
 
-            ViewBag.EncomendaFK = new SelectList(db.Encomendas, "EncomendaID", "LocalExpedicao", itensEncomenda.EncomendaFK);
-            ViewBag.ProdutoFK = new SelectList(db.Produtos, "ProdutoID", "Nome", itensEncomenda.ProdutoFK);
+            //ViewBag.EncomendaFK = new SelectList(db.Encomendas, "EncomendaID", "LocalExpedicao", itensEncomenda.EncomendaFK);
+            //ViewBag.ProdutoFK = new SelectList(db.Produtos, "ProdutoID", "Nome", itensEncomenda.ProdutoFK);
+            //return View(itensEncomenda);
+
             return View(itensEncomenda);
         }
+
 
         // GET: ItensEncomendas/Edit/5
         public ActionResult Edit(int? id){
             if (id == null){
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //direciona o utilizador para a listagem se não for fornecido o id do detalhe da encomenda a editar
+                return RedirectToAction("Index");
             }
+
             ItensEncomenda itensEncomenda = db.ItensEncomenda.Find(id);
             if (itensEncomenda == null){
-                return HttpNotFound();
+                //direciona o utilizador para a listagem se o detalhe não existir
+                return RedirectToAction("Index");
             }
-            ViewBag.EncomendaFK = new SelectList(db.Encomendas, "EncomendaID", "LocalExpedicao", itensEncomenda.EncomendaFK);
-            ViewBag.ProdutoFK = new SelectList(db.Produtos, "ProdutoID", "Nome", itensEncomenda.ProdutoFK);
+
+            try{
+                ViewBag.EncomendaFK = new SelectList(db.Encomendas, "EncomendaID", "LocalExpedicao", itensEncomenda.EncomendaFK);
+                ViewBag.ProdutoFK = new SelectList(db.Produtos, "ProdutoID", "Nome", itensEncomenda.ProdutoFK);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", string.Format("Um erro ocorrido impediu a operação!"));
+            }
+            
             return View(itensEncomenda);
         }
 
@@ -83,24 +105,41 @@ namespace FinalWork.Controllers{
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Quantidade,Preco,IVA,ProdutoFK,EncomendaFK")] ItensEncomenda itensEncomenda){
-            if (ModelState.IsValid){
-                db.Entry(itensEncomenda).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+            try{
+                if (ModelState.IsValid)
+                {
+                    db.Entry(itensEncomenda).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-            ViewBag.EncomendaFK = new SelectList(db.Encomendas, "EncomendaID", "LocalExpedicao", itensEncomenda.EncomendaFK);
-            ViewBag.ProdutoFK = new SelectList(db.Produtos, "ProdutoID", "Nome", itensEncomenda.ProdutoFK);
+            catch (Exception ex){
+                ModelState.AddModelError("", string.Format("Um erro ocorrido impediu a operação!"));
+            }
+
+            try{
+                ViewBag.EncomendaFK = new SelectList(db.Encomendas, "EncomendaID", "LocalExpedicao", itensEncomenda.EncomendaFK);
+                ViewBag.ProdutoFK = new SelectList(db.Produtos, "ProdutoID", "Nome", itensEncomenda.ProdutoFK);
+            }
+            catch (Exception){
+                ViewBag.EncomendaFK = new SelectList(db.Encomendas, "EncomendaID", "LocalExpedicao", itensEncomenda.EncomendaFK);
+                ViewBag.ProdutoFK = new SelectList(db.Produtos, "ProdutoID", "Nome", itensEncomenda.ProdutoFK);
+            }
+            
             return View(itensEncomenda);
         }
 
         // GET: ItensEncomendas/Delete/5
         public ActionResult Delete(int? id){
             if (id == null){
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //se não for fornecido id redireciona-se o user para a listagem
+                return RedirectToAction("Index");
             }
+
             ItensEncomenda itensEncomenda = db.ItensEncomenda.Find(id);
             if (itensEncomenda == null){
-                return HttpNotFound();
+                //direciona o utilizador para a listagem se o detalhe não existir ou não for "encontrado" para eliminação
+                return RedirectToAction("Index");
             }
             return View(itensEncomenda);
         }
@@ -108,11 +147,20 @@ namespace FinalWork.Controllers{
         // POST: ItensEncomendas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id){
+        public ActionResult DeleteConfirmed(int id)
+        {
             ItensEncomenda itensEncomenda = db.ItensEncomenda.Find(id);
-            db.ItensEncomenda.Remove(itensEncomenda);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+
+            try{
+                db.ItensEncomenda.Remove(itensEncomenda);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex){
+                ModelState.AddModelError("", string.Format("Um erro ocorrido impediu a eliminação da Encomenda!"));
+                //retorna a view com os dados do detalhe da encomenda
+                return View(itensEncomenda);
+            }
         }
 
         protected override void Dispose(bool disposing){

@@ -17,17 +17,21 @@ namespace FinalWork.Models
         }
 
         [Key]
+        [Display(Name = "Jornada Nº")]
         public int JornadaID { get; set; }
 
         [Required]
+        [Display(Name = "Data de Início")]
         [DataType(DataType.Date)]
         public DateTime DataInicio { get; set; }
 
         [Required]
+        [Display(Name = "Data de Finalização")]
         [DataType(DataType.Date)]
         public DateTime DataFinal { get; set; }
 
-       
+
+        [Display(Name = "Descrição")]
         [StringLength(80)]
         public string Descricao { get; set; }
 

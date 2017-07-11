@@ -1,10 +1,12 @@
 ﻿@model FinalWork.Models.Mensagens
 
+<br />
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
 }
 
-<h2>Details</h2>
+<h2>Detalhes da Mensagem</h2>
+<br />
 
 <div>
     <h4>Mensagens</h4>
@@ -19,19 +21,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Tipo.Descricao)
+            @Html.DisplayNameFor(model => model.Tipo)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Tipo.Descricao)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Texto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Texto)
         </dd>
 
         <dt>
@@ -49,6 +43,18 @@
         <dd>
             @Html.DisplayFor(model => model.Respondida)
         </dd>
+
+        <br />
+        <dt>
+            @Html.DisplayNameFor(model => model.Texto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Texto)
+        </dd>
+
+        @* Espaçar a mensagem da resposta *@
+        <br /> <br /> <hr />
 
         <dt>
             @Html.DisplayNameFor(model => model.DataResposta)
@@ -69,6 +75,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MensagemID }) |
-    @Html.ActionLink("Back to List", "Index")
+    <br /> <br />
+    @Html.ActionLink("Editar", "Edit", new { id = Model.MensagemID }) |
+    @Html.ActionLink("Voltar à Listagem", "Index")
 </p>

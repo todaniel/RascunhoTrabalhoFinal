@@ -24,17 +24,19 @@ namespace FinalWork.Controllers
         // GET: Jornadas/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (id == null){
+                //colocar o utilizador na listagem de Jornadas se não fornecer id
+                return RedirectToAction("Index");
             }
+
             Jornadas jornadas = db.Jornadas.Find(id);
-            if (jornadas == null)
-            {
-                return HttpNotFound();
+            if (jornadas == null){
+                //colocar o utilizador na listagem de Jornadas se a jornada não existir
+                return RedirectToAction("Index");
             }
             return View(jornadas);
         }
+
 
         // GET: Jornadas/Create
         public ActionResult Create()
@@ -49,27 +51,35 @@ namespace FinalWork.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "JornadaID,DataInicio,DataFinal,Descricao")] Jornadas jornadas)
         {
-            if (ModelState.IsValid)
-            {
-                db.Jornadas.Add(jornadas);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+            try{
+                if (ModelState.IsValid){
+                    db.Jornadas.Add(jornadas);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
+            catch (Exception ex){
+                ModelState.AddModelError("", string.Format("Um erro ocorrido impediu a criação da jornada!"));
+            }
+            
 
             return View(jornadas);
         }
 
+
         // GET: Jornadas/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (id == null){
+                //colocar o utilizador na listagem de Jornadas se não fornecer id para edição
+                return RedirectToAction("Index");
             }
+
             Jornadas jornadas = db.Jornadas.Find(id);
-            if (jornadas == null)
-            {
-                return HttpNotFound();
+            if (jornadas == null){
+                //colocar o utilizador na listagem de Jornadas se a jornada não existir
+                return RedirectToAction("Index");
             }
             return View(jornadas);
         }
@@ -81,26 +91,35 @@ namespace FinalWork.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "JornadaID,DataInicio,DataFinal,Descricao")] Jornadas jornadas)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(jornadas).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+            try{
+                if (ModelState.IsValid){
+                    db.Entry(jornadas).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
+            catch (Exception ex){
+                ModelState.AddModelError("", string.Format("Um erro ocorrido impediu a edição da jornada!"));
+            }
+
             return View(jornadas);
         }
 
+
+
         // GET: Jornadas/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        public ActionResult Delete(int? id){
+
+            if (id == null){
+                //colocar o utilizador na listagem de Jornadas se não fornecer id para eliminação
+                return RedirectToAction("Index");
             }
+
             Jornadas jornadas = db.Jornadas.Find(id);
-            if (jornadas == null)
-            {
-                return HttpNotFound();
+            if (jornadas == null){
+                //colocar o utilizador na listagem de Jornadas se a jornada não existir
+                return RedirectToAction("Index");
             }
             return View(jornadas);
         }
@@ -110,19 +129,27 @@ namespace FinalWork.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Jornadas jornadas = db.Jornadas.Find(id);
-            db.Jornadas.Remove(jornadas);
-            db.SaveChanges();
+            try{
+                Jornadas jornadas = db.Jornadas.Find(id);
+                db.Jornadas.Remove(jornadas);
+                db.SaveChanges();
+            }
+            catch (Exception ex){
+                ModelState.AddModelError("", string.Format("Um erro ocorrido impediu a eliminação da jornada!"));
+            }
+            
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
+
+        protected override void Dispose(bool disposing){
+
+            if (disposing){ 
                 db.Dispose();
             }
             base.Dispose(disposing);
         }
+
+
     }
 }

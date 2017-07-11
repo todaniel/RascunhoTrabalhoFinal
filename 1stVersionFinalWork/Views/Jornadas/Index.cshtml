@@ -1,45 +1,54 @@
 ﻿@model IEnumerable<FinalWork.Models.Jornadas>
 
-@{
-    ViewBag.Title = "Index";
+<br />
+@{ViewBag.Title = "Listagem";}
+
+<h2>Listagem de Jornadas</h2>
+
+<br />
+<b><p>@Html.ActionLink("Novo Registo", "Create")</p></b>
+
+
+@if (Model.Count() != 0)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DataInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataFinal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataFinal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.JornadaID }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.JornadaID }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.JornadaID })
+            </td>
+        </tr>
+    }
+
+    </table>
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DataInicio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataFinal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataInicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataFinal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.JornadaID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.JornadaID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.JornadaID })
-        </td>
-    </tr>
+else
+{
+    <br />
+    <p colspan="4" style="text-align:left; color:#FF0000;"><b>De momento não existem jornadas para listar!</b></p>
 }
-
-</table>
